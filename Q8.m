@@ -4,6 +4,8 @@ B = 0.0149;
 C = -4.3013E-6;
 D = -1.0542E5;
 
+Q = 952.583738182994; %Flow rate
+
 R = 8.314;
 P1 = 39.3001;
 P2 = 39.3001;
@@ -43,17 +45,22 @@ Pc2 = 34.74*Xbi+Pch2*Xh+41.06*Xto+45.99*Xme;
 Tr2 = T2/Tc2;
 Pr2 = P2/Pc2;
 
-HR02=-0.064572294;
-HR12=0.1817427012;
+HR02 = -0.064572294;
+HR12 = 0.1817427012;
 
-HR2=HR02+omega*HR12;
-H2R=HR2*R*Tc2;
+HR2 = HR02+omega*HR12;
+H2R = HR2*R*Tc2;
 
 %% Hig
-T0=298.15;
-dHigR=A*(T2-T0)+B*(T2^2-T0^2)/2+C*(T2^3-T0^3)/3+D*((T2-T0)/(T2*T0));
-dHig=dHigR*8.314;
+% T0=298.15;
+% dHigR=A*(T2-T0)+B*(T2^2-T0^2)/2+C*(T2^3-T0^3)/3+D*((T2-T0)/(T2*T0));
+% dHig=dHigR * 8.314;
+
+% Use intergration method instead
+fun = @(T) T .* (3.7212 + 0.0149*T + -4.3013E-6 .* T.^2 + -1.0542E5 .* T.^(-2));
+q = integral(fun, T1, T2) / 1000;
+dHig = q * R;
 
 Htotal=-H1R+dHig+H2R;
-Htotal=Htotal*952.583738182994/1000;
-disp(Htotal)
+Htotal=Htotal*Q/1000;
+disp(Htotal + "kW")
