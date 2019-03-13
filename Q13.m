@@ -28,7 +28,7 @@ cSol = double(cSol);
 dSol = double(dSol);
 eSol = double(eSol);
 
-%aSol
+aSol
 %bSol
 %cSol
 %dSol
