@@ -33,4 +33,4 @@ CpHR1=Amix+Bmix/2*(Tf1+T0)+Cmix/3*(Tf1^2+Tf1*T0+T0^2)+Dmix/(Tf1*T0);
 Tf2=dHrealR/CpHR1+T0;
  
 disp(Tf2)
-%%Tf3=744.1750K
+

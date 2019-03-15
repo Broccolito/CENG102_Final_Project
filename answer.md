@@ -217,7 +217,7 @@ disp(dHtotal_in_kw)
 #Q4
 
 ```Matlab
-%%For toluene
+
 A = 0.29;
 B = 47.052E-3;
 C = -15.716E-6;
@@ -237,7 +237,7 @@ T2=T0*exp(a/CpsR1);
 CpsR2=A+(B+(C+D/(T2^2*T0^2))*((T2+T0)/2))*(T2-T0)/(log(T2/T0));
 T3=T0*exp(a/CpsR2);
 Ta=T3;
-dHigR=A*(Ta-T0)+B/2*(Ta^2-T0^2)+D*((Ta-T0)/(Ta*T0)) + (C/3)*(Ta^3 - T0^3);
+dHigR=A*(Ta-T0)+B/2*(Ta^2-T0^2)+(C/3)*(Ta^3 - T0^3);
 dHig=dHigR*8.314;
 dHigreal=dHig/0.75;
 % find work
@@ -248,80 +248,19 @@ work_in_kw = work / 1000; %KW
 % find real T, iterate again
 Ta = 600;
 Tg1=Ta;
-CpHR=A+B/2*(Tg1+Ta)+D/(Tg1*Ta);
+CpHR=A+B/2*(Tg1+Ta)+C/3*(Tg1^2+Tg1*Ta+Ta^2);
 dHigrealR=dHigreal/R;
 Tf1=dHigrealR/CpHR+Ta;
-CpHR1=A+B/2*(Tf1+Ta)+D/(Tf1*Ta);
+CpHR1=A+B/2*(Tf1+Ta)+C/3*(Tf1^2+Tf1*Ta+Ta^2);
 Tf2=dHigrealR/CpHR1+Ta;
-CpHR2=A+B/2*(Tf2+Ta)+D/(Tf2*Ta);
+CpHR2=A+B/2*(Tf2+Ta)+C/3*(Tf2^2+Tf2*Ta+Ta^2);
 Tf3=dHigrealR/CpHR2+Ta;
-CpHR2=A+B/2*(Tf3+Ta)+D/(Tf3*Ta);
+CpHR2=A+B/2*(Tf3+Ta)+C/3*(Tf3^2+Tf3*Ta+Ta^2);
 Tf4=dHigrealR/CpHR2+Ta;
+ 
+%%Tf 723.3461 K
+%%Work: 854.0413kW
 
-disp("Tf " + Tf4 + " K")
-disp("Work: " + work_in_kw + "kW")
-
-%
-%>>Q4
-%  Tf 698.1111 K
-%  Work: 854.0413kW
-%
-
-```
-
-
-#Q6
-
-```Matlab
-P=3337.06;R=8.314;
-A_to=13.932; B_to=3056.96; C_to=217.625;
-A_bi=14.6372; B_bi=4576.67; C_bi=201.594;
-Tsat_to=B_to/(A_to-log(P))-C_to;
-Tsat_bi=B_bi/(A_bi-log(P))-C_bi;
-T_to=Tsat_to+100+273.15;
-T_bi=Tsat_bi+100+273.15;
-T_h=901.3358;
-T_to_f=698.1111;
-T_LR=310.928;
-T_guess=T_LR;
-H_LR=0;
-Ato=0.290;Bto=47.052E-3;Cto=-15.716E-6;Dto=0;
-Abi=13.83;Bbi=51.7E-3;Cbi=-16.33E-6;Dbi=-7.578E5;
-Ah=3.249;Bh=0.422E-3;Ch=0;Dh=0.083E5;
-Ame=1.702;Bme=9.081E-3;Cme=-2.164E-6;Dme=0;
-dHR_to=Ato*(T_guess-T_to)+Bto/2*(T_guess^2-T_to^2)+Cto/3*(T_guess^3-T_to^3)+Dto*((T_guess-T_to)/(T_guess*T_to));
-dHR_bi=Abi*(T_guess-T_bi)+Bbi/2*(T_guess^2-T_bi^2)+Cbi/3*(T_guess^3-T_bi^3)+Dbi*((T_guess-T_bi)/(T_guess*T_bi));
-dHR_h=Ah*(T_guess-T_h)+Bh/2*(T_guess^2-T_h^2)+Ch/3*(T_guess^3-T_h^3)+Dh*((T_guess-T_h)/(T_guess*T_h));
-dHR_to_f=Ato*(T_guess-T_to_f)+Bto/2*(T_guess^2-T_to_f^2)+Cto/3*(T_guess^3-T_to_f^3)+Dto*((T_guess-T_to_f)/(T_guess*T_to_f));
-dH_to=dHR_to*R*11.32006819;
-dH_bi=dHR_bi*R*134.99181316497;
-dH_h=dHR_bi*R*44.431267657;
-dH_to_f=dHR_to_f*R*33.96020457;
-dHcool=dH_to+dH_bi+dH_h+dH_to_f;
-y_to=0.047534165;
-y_bi=0.14171123;
-y_h=0.237670826;
-y_me=0.573083779;
-Amix=y_to*Ato+y_bi*Abi+y_h*Ah+y_me*Ame;
-Bmix=y_to*Bto+y_bi*Bbi+y_h*Bh+y_me*Bme;
-Cmix=y_to*Cto+y_bi*Cbi+y_h*Ch+y_me*Cme;
-Dmix=y_to*Dto+y_bi*Dbi+y_h*Dh+y_me*Dme;
-Tk1=T_LR;
-CpmixR=Amix+Bmix/2*(Tk1+T_guess)+Cmix/3*(Tk1^2+Tk1*T_guess+T_guess^2)+Dmix/(Tk1*T_guess);
-dH_RF=-dHcool/952.5837382;
-dH_RFR=dH_RF/R;
-Tk2=dH_RFR/CpmixR+T_guess;
-CpmixR1=Amix+Bmix/2*(Tk2+T_guess)+Cmix/3*(Tk2^2+Tk2*T_guess+T_guess^2)+Dmix/(Tk2*T_guess);
-Tk3=dH_RFR/CpmixR1+T_guess;
-CpmixR2=Amix+Bmix/2*(Tk3+T_guess)+Cmix/3*(Tk3^2+Tk3*T_guess+T_guess^2)+Dmix/(Tk3*T_guess);
-Tk4=dH_RFR/CpmixR2+T_guess;
-CpmixR3=Amix+Bmix/2*(Tk4+T_guess)+Cmix/3*(Tk4^2+Tk4*T_guess+T_guess^2)+Dmix/(Tk4*T_guess);
-Tk5=dH_RFR/CpmixR3+T_guess;
-CpmixR4=Amix+Bmix/2*(Tk5+T_guess)+Cmix/3*(Tk5^2+Tk5*T_guess+T_guess^2)+Dmix/(Tk5*T_guess);
-Tk6=dH_RFR/CpmixR4+T_guess;
-
-disp(Tk6)
-%%Tk6=732.5288 K
 
 ```
 
@@ -333,7 +272,7 @@ Amix=3.7212;
 Bmix=0.0149;
 Cmix=-4.3013E-6;
 Dmix=-1.0542E+5;
-T0=732.5288; %K
+T0= 662.97; %K
 R = 8.314;
 P1=33.3706;
 P2=39.3001;
@@ -363,9 +302,7 @@ Tf1=dHrealR/CpHR+T0;
 CpHR1=Amix+Bmix/2*(Tf1+T0)+Cmix/3*(Tf1^2+Tf1*T0+T0^2)+Dmix/(Tf1*T0);
 Tf2=dHrealR/CpHR1+T0;
  
-disp(Tf2)
-%%Tf3=744.1750K
-
+%%Tf=674.1184K 
 
 
 ```
@@ -375,7 +312,6 @@ disp(Tf2)
 
 ```Matlab
 
-clear
 A=3.7212;
 B=0.0149;
 C=-4.3013E-6;
@@ -383,56 +319,56 @@ D=-1.0542E5;
 R=8.314;
 P1=39.3001;
 P2=39.3001;
-T1=742.4345;
+T1=674.1184;
 T2=922.0389;
-
-Xto=0.04753417;
-Xh=0.23767083;
-Xme=0.57308378;
-Xbi=0.14171123;
-
+ 
+Xto=0.047534165181224;
+Xh=0.23767082590612;
+Xme=0.573083778966132;
+Xbi=0.141711229946524;
+ 
 %% Residual 1
 Tch1=43.6/(1+(21.8/(2.016*T1)));
 Pch1=20.5/(1+(44.2/(2.016*T1)));
-
+ 
 Tc1=772.16*Xbi+Tch1*Xh+591.8*Xto+190.6*Xme;
 Pc1=34.74*Xbi+Pch1*Xh+41.06*Xto+45.99*Xme;
-
+ 
 omega=0.012*Xme+0.262*Xto+0.423*Xbi;
-
+ 
 Tr1=T1/Tc1;
 Pr1=P1/Pc1;
-
-HR01=-0.1264652928;
-HR11=0.1677473384;
-
+ 
+HR01= -0.157316112;
+HR11= 0.135460648;
 HR1=HR01+omega*HR11;
 H1R=HR1*R*Tc1;
-
+ 
 %% Residual 2
 Tch2=43.6/(1+(21.8/(2.016*T2)));
 Pch2=20.5/(1+(44.2/(2.016*T2)));
-
+ 
 Tc2=772.16*Xbi+Tch2*Xh+591.8*Xto+190.6*Xme;
 Pc2=34.74*Xbi+Pch2*Xh+41.06*Xto+45.99*Xme;
-
+ 
 Tr2=T2/Tc2;
 Pr2=P2/Pc2;
-
-HR02=-0.064572294;
-HR12=0.1817427012;
-
+ 
+HR02= -0.0660306075;
+HR12= 0.1580802185;
+ 
 HR2=HR02+omega*HR12;
 H2R=HR2*R*Tc2;
-
+ 
 %% Hig
-T0=298.15;
-dHigR=A*(T2-T0)+B*(T2^2-T0^2)/2+C*(T2^3-T0^3)/3+D*((T2-T0)/(T2*T0));
+dHigR=A*(T2-T1)+B/2*(T2.^2-T1.^2)+C/3*(T2.^3-T1.^3)+D*(T2-T1)/(T2*T1);
 dHig=dHigR*8.314;
-
+ 
 Htotal=-H1R+dHig+H2R;
 Htotal=Htotal*952.583738182994/1000;
 disp(Htotal)
+%%Heat=2.5089e+04kW
+
 
 
 ```
