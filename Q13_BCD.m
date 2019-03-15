@@ -33,6 +33,9 @@ y5=K5*x5;
 Rh2=y2*V/(F*z2);
 Rme=y4*V/(F*z4);
 
+disp("Rh2: " + Rh2)
+disp("Rme: " + Rme)
+
 %% part d
 Rto=x1*L/(F*z1);
 Rbe=x3*L/(F*z3);
