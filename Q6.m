@@ -44,4 +44,6 @@ CpmixR3=Amix+Bmix/2*(Tk4+T_guess)+Cmix/3*(Tk4^2+Tk4*T_guess+T_guess^2)+Dmix/(Tk4
 Tk5=dH_RFR/CpmixR3+T_guess;
 CpmixR4=Amix+Bmix/2*(Tk5+T_guess)+Cmix/3*(Tk5^2+Tk5*T_guess+T_guess^2)+Dmix/(Tk5*T_guess);
 Tk6=dH_RFR/CpmixR4+T_guess;
+
+disp(Tk6)
 %%Tk6=732.5288 K
