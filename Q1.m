@@ -10,7 +10,7 @@ P2=33.3706;
 % iteration for Ta
 Tg=1.01*T0;
 CpsR=A+(B+(C+D/(Tg^2*T0^2))*((Tg+T0)/2))*(Tg-T0)/(log(Tg/T0));
-a=log(P2/P1);;
+a=log(P2/P1);   
 T1=T0*exp(a/CpsR);
 CpsR1=A+(B+(C+D/(T1^2*T0^2))*((T1+T0)/2))*(T1-T0)/(log(T1/T0));
 T2=T0*exp(a/CpsR1);
@@ -72,15 +72,14 @@ work_in_kw = work / 1000; %KW
  
 %%
 % find real T, iterate again
-Ta = 283.15; %K
 Tg1=Ta;
-CpHR=A+B/2*(Tg1+Ta)+D/(Tg1*Ta);
+CpHR=A+B/2*(Tg1+T0)+D/(Tg1*T0);
 dHigrealR=dHigreal/R;
-Tf1=dHigrealR/CpHR+Ta;
-CpHR1=A+B/2*(Tf1+Ta)+D/(Tf1*Ta);
-Tf2=dHigrealR/CpHR1+Ta;
-CpHR2=A+B/2*(Tf2+Ta)+D/(Tf2*Ta);
-Tf3=dHigrealR/CpHR2+Ta;
+Tf1=dHigrealR/CpHR+T0;
+CpHR1=A+B/2*(Tf1+T0)+D/(Tf1*T0);
+Tf2=dHigrealR/CpHR1+T0;
+CpHR2=A+B/2*(Tf2+T0)+D/(Tf2*T0);
+Tf3=dHigrealR/CpHR2+T0;
  
 disp("Tf3 " + Tf3 + " K")
 disp("Work: " + work_in_kw + "kW")
