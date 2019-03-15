@@ -37,3 +37,7 @@ Rme=y4*V/(F*z4);
 Rto=x1*L/(F*z1);
 Rbe=x3*L/(F*z3);
 Rbi=x5*L/(F*z5);
+
+disp("Rto: " + Rto)
+disp("Rbe: " + Rbe)
+disp("Rbi: " + Rbi)
