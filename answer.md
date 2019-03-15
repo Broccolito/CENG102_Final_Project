@@ -75,20 +75,20 @@ work_in_kw = work / 1000; %KW
  
 %%
 % find real T, iterate again
-Ta = 283.15; %K
 Tg1=Ta;
-CpHR=A+B/2*(Tg1+Ta)+D/(Tg1*Ta);
+CpHR=A+B/2*(Tg1+T0)+D/(Tg1*T0);
 dHigrealR=dHigreal/R;
-Tf1=dHigrealR/CpHR+Ta;
-CpHR1=A+B/2*(Tf1+Ta)+D/(Tf1*Ta);
-Tf2=dHigrealR/CpHR1+Ta;
-CpHR2=A+B/2*(Tf2+Ta)+D/(Tf2*Ta);
-Tf3=dHigrealR/CpHR2+Ta;
+Tf1=dHigrealR/CpHR+T0;
+CpHR1=A+B/2*(Tf1+T0)+D/(Tf1*T0);
+Tf2=dHigrealR/CpHR1+T0;
+CpHR2=A+B/2*(Tf2+T0)+D/(Tf2*T0);
+Tf3=dHigrealR/CpHR2+T0;
  
 disp("Tf3 " + Tf3 + " K")
 disp("Work: " + work_in_kw + "kW")
 
 %Tf3 890.1836K
+
 
 ```
 
@@ -332,7 +332,7 @@ disp(Tk6)
 Amix=3.7212;
 Bmix=0.0149;
 Cmix=-4.3013E-6;
-Dmix=-1.0542E5;
+Dmix=-1.0542E+5;
 T0=732.5288; %K
 R = 8.314;
 P1=33.3706;
@@ -349,24 +349,23 @@ T3=T0*exp(a/CpsR2);
 Ta=T3;
 dHigR=Amix*(Ta-T0)+Bmix/2*(Ta^2-T0^2)+Cmix/3*(Ta^3-T0^3)+Dmix*((Ta-T0)/(Ta*T0));
 dHig=dHigR*8.314;
+dHreal=dHig/0.85;
 % find work
-work=dHig*952.5837382;
-work_in_kw = work / 1000; %KW
-%work_in_kw= 955.2494 KW
+work=dHreal*952.5837382;
+work_in_kw = work/1000; %KW
+%work_in_kw= 1123.8 KW
 %%
 % find real T, iterate again
-Tg1=T0;
+Tg1=Ta;
+dHrealR = dHreal/8.314;
 CpHR=Amix+Bmix/2*(Tg1+T0)+Cmix/3*(Tg1^2+Tg1*T0+T0^2)+Dmix/(Tg1*T0);
-dHigR=dHig/R;
-Tf1=dHigR/CpHR+T0;
+Tf1=dHrealR/CpHR+T0;
 CpHR1=Amix+Bmix/2*(Tf1+T0)+Cmix/3*(Tf1^2+Tf1*T0+T0^2)+Dmix/(Tf1*T0);
-Tf2=dHigR/CpHR1+T0;
-CpHR2=Amix+Bmix/2*(Tf2+T0)+Cmix/3*(Tf2^2+Tf2*T0+T0^2)+Dmix/(Tf2*T0);
-Tf3=dHigR/CpHR2+T0;
+Tf2=dHrealR/CpHR1+T0;
  
-disp(Tf3)
+disp(Tf2)
+%%Tf3=744.1750K
 
-%%Tf3=742.4345
 
 
 ```
