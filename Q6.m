@@ -47,4 +47,4 @@ CpmixR4=Amix+Bmix/2*(Tk5+T_guess)+Cmix/3*(Tk5^2+Tk5*T_guess+T_guess^2)+Dmix/(Tk5
 Tk6=dH_RFR/cpmixR4+T_guess;
 
 disp(Tk6)
-%%Tk6=732.5288 K
+%%Tk6=662.9704K
