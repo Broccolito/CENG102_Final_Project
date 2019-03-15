@@ -22,7 +22,7 @@ dHigR=A*(Ta-T0)+B/2*(Ta^2-T0^2)+D*((Ta-T0)/(Ta*T0)) + (C/3)*(Ta^3 - T0^3);
 dHig=dHigR*8.314;
 dHigreal=dHig/0.75;
 % find work
-work=dHigreal*33.96;
+work=dHigreal*33.9602046;
 work_in_kw = work / 1000; %KW
  
 %%
@@ -41,3 +41,9 @@ Tf4=dHigrealR/CpHR2+Ta;
 
 disp("Tf " + Tf4 + " K")
 disp("Work: " + work_in_kw + "kW")
+
+%
+%>>Q4
+%  Tf 698.1111 K
+%  Work: 854.0413kW
+%

@@ -1,10 +1,10 @@
-P=3337.06; R=8.314;
+P=3337.06;R=8.314;
 A_to=13.932; B_to=3056.96; C_to=217.625;
 A_bi=14.6372; B_bi=4576.67; C_bi=201.594;
 Tsat_to=B_to/(A_to-log(P))-C_to;
 Tsat_bi=B_bi/(A_bi-log(P))-C_bi;
-T_to=Tsat_to+100;
-T_bi=Tsat_bi+100;
+T_to=Tsat_to+100+273.15;
+T_bi=Tsat_bi+100+273.15;
 T_h=901.3358;
 T_to_f=698.1111;
 T_LR=310.928;
@@ -40,6 +40,8 @@ CpmixR1=Amix+Bmix/2*(Tk2+T_guess)+Cmix/3*(Tk2^2+Tk2*T_guess+T_guess^2)+Dmix/(Tk2
 Tk3=dH_RFR/CpmixR1+T_guess;
 CpmixR2=Amix+Bmix/2*(Tk3+T_guess)+Cmix/3*(Tk3^2+Tk3*T_guess+T_guess^2)+Dmix/(Tk3*T_guess);
 Tk4=dH_RFR/CpmixR2+T_guess;
-CpmixR2=Amix+Bmix/2*(Tk4+T_guess)+Cmix/3*(Tk4^2+Tk4*T_guess+T_guess^2)+Dmix/(Tk4*T_guess);
-Tk5=dH_RFR/CpmixR2+T_guess;
-disp(Tk5)
+CpmixR3=Amix+Bmix/2*(Tk4+T_guess)+Cmix/3*(Tk4^2+Tk4*T_guess+T_guess^2)+Dmix/(Tk4*T_guess);
+Tk5=dH_RFR/CpmixR3+T_guess;
+CpmixR4=Amix+Bmix/2*(Tk5+T_guess)+Cmix/3*(Tk5^2+Tk5*T_guess+T_guess^2)+Dmix/(Tk5*T_guess);
+Tk6=dH_RFR/CpmixR4+T_guess;
+%%Tk6=732.5288 K
