@@ -1,6 +1,6 @@
 #Q1
 
-```Python
+```Matlab
 A=3.249;
 B=0.422E-3;
 C=0;
@@ -94,7 +94,7 @@ disp("Work: " + work_in_kw + "kW")
 
 #Q1_EC
 
-```
+```Matlab
 A=3.249;
 B=0.422E-3;
 C=0;
@@ -142,7 +142,7 @@ disp("Work: " + work_in_kw + "kW")
 
 #Q2
 
-```
+```Matlab
 A=3.249;
 B=0.422E-3;
 C=0;
@@ -190,7 +190,7 @@ disp("Tf3 " + Tf3 + " K")
 
 #Q3
 
-```
+```Matlab
 Ato=0.29;
 Bto=47.052E-3;
 Cto=-15.716E-6;
@@ -216,7 +216,7 @@ disp(dHtotal_in_kw)
 
 #Q4
 
-```
+```Matlab
 %%For toluene
 A = 0.29;
 B = 47.052E-3;
@@ -272,7 +272,7 @@ disp("Work: " + work_in_kw + "kW")
 
 #Q6
 
-```
+```Matlab
 P=3337.06;R=8.314;
 A_to=13.932; B_to=3056.96; C_to=217.625;
 A_bi=14.6372; B_bi=4576.67; C_bi=201.594;
@@ -327,7 +327,7 @@ disp(Tk6)
 
 #Q7
 
-```
+```Matlab
 
 Amix=3.7212;
 Bmix=0.0149;
@@ -374,7 +374,7 @@ disp(Tf3)
 #Q8
 
 
-```
+```Matlab
 
 clear
 A=3.7212;
@@ -441,7 +441,7 @@ disp(Htotal)
 #Q9
 
 
-```
+```Matlab
 Ar=3.7212;
 Br=0.0149;
 Cr=-4.3013E-6;
@@ -488,7 +488,7 @@ disp(dHtotal_in_kw)
 #Q10
 
 
-```
+```Matlab
 
 T0=298.15;
 dHig2a=-dHig1-Htrxn1-Htrxn2;
@@ -518,7 +518,7 @@ disp(Tf6)
 #Q12
 
 
-```
+```Matlab
 %%Q12_A
 AE=3.664; BE=0.0149; CE=-4.2832E-6; DE=-1.0638E5;
 PE=39.3001;
@@ -606,7 +606,7 @@ disp(Tl3)
 #Q13
 
 
-```
+```Matlab
 
 clear
 %%part b
@@ -662,7 +662,7 @@ disp("Rbi: " + Rbi)
 #Q14
 
 
-```
+```Matlab
 
 clear
 %%part b
@@ -702,7 +702,7 @@ y5=K5*x5;
 #Q15
 
 
-```
+```Matlab
 %part a and b
 A_to=13.932; B_to=3056.96; C_to=217.625;
 A_bi=14.6372; B_bi=4576.67; C_bi=201.594;
