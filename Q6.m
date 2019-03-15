@@ -13,7 +13,7 @@ T_guess=T_LR;
 H_LR=0;
 Ato=0.290;Bto=47.052E-3;Cto=-15.716E-6;Dto=0;
 Abi=13.83;Bbi=51.7E-3;Cbi=-16.33E-6;Dbi=-7.578E5;
-Ah=3.249;Bh=0.422E-3;Ch=0;Dh=0.083E5;
+Ah=3.249;Bh=0.422E-3;Ch=0;cpmixR4 = 11.69576;Dh=0.083E5;
 Ame=1.702;Bme=9.081E-3;Cme=-2.164E-6;Dme=0;
 dHR_to=Ato*(T_guess-T_to)+Bto/2*(T_guess^2-T_to^2)+Cto/3*(T_guess^3-T_to^3)+Dto*((T_guess-T_to)/(T_guess*T_to));
 dHR_bi=Abi*(T_guess-T_bi)+Bbi/2*(T_guess^2-T_bi^2)+Cbi/3*(T_guess^3-T_bi^3)+Dbi*((T_guess-T_bi)/(T_guess*T_bi));
@@ -44,7 +44,7 @@ Tk4=dH_RFR/CpmixR2+T_guess;
 CpmixR3=Amix+Bmix/2*(Tk4+T_guess)+Cmix/3*(Tk4^2+Tk4*T_guess+T_guess^2)+Dmix/(Tk4*T_guess);
 Tk5=dH_RFR/CpmixR3+T_guess;
 CpmixR4=Amix+Bmix/2*(Tk5+T_guess)+Cmix/3*(Tk5^2+Tk5*T_guess+T_guess^2)+Dmix/(Tk5*T_guess);
-Tk6=dH_RFR/CpmixR4+T_guess;
+Tk6=dH_RFR/cpmixR4+T_guess;
 
 disp(Tk6)
 %%Tk6=732.5288 K
